@@ -1,0 +1,20 @@
+import { useState, useCallback } from "react";
+
+let toastId = 0;
+
+function useToast() {
+  const [toasts, setToasts] = useState([]);
+
+  const addToast = useCallback((message, type = "success") => {
+    const id = ++toastId;
+    setToasts((prev) => [...prev, { id, message, type }]);
+  }, []);
+
+  const removeToast = useCallback((id) => {
+    setToasts((prev) => prev.filter((t) => t.id !== id));
+  }, []);
+
+  return { toasts, addToast, removeToast };
+}
+
+export default useToast;

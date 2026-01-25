@@ -1,0 +1,86 @@
+/* ===== DESIGN TOKENS ===== */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+  --font: 'Inter', system-ui, sans-serif;
+
+  /* Dark theme (default) */
+  --bg-primary: #0d0d14;
+  --bg-secondary: #13131f;
+  --bg-card: #1a1a2e;
+  --bg-elevated: #1e1e35;
+  --text-primary: #f0f0ff;
+  --text-secondary: #a0a0c0;
+  --text-muted: #6060a0;
+  --accent: #6c63ff;
+  --accent-hover: #5a52e0;
+  --accent-glow: rgba(108, 99, 255, 0.3);
+  --gold: #ffd700;
+  --success: #2ecc71;
+  --danger: #e74c3c;
+  --info: #3498db;
+  --border: rgba(255, 255, 255, 0.08);
+  --border-hover: rgba(108, 99, 255, 0.5);
+  --shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  --shadow-card: 0 4px 20px rgba(0, 0, 0, 0.3);
+  --navbar-bg: rgba(13, 13, 20, 0.85);
+  --radius: 12px;
+  --radius-sm: 8px;
+  --transition: 0.25s ease;
+}
+
+[data-theme="light"] {
+  --bg-primary: #f5f5fa;
+  --bg-secondary: #eeeef8;
+  --bg-card: #ffffff;
+  --bg-elevated: #f0f0fc;
+  --text-primary: #1a1a2e;
+  --text-secondary: #4a4a6a;
+  --text-muted: #8888aa;
+  --border: rgba(0, 0, 0, 0.08);
+  --border-hover: rgba(108, 99, 255, 0.4);
+  --shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  --shadow-card: 0 4px 20px rgba(0, 0, 0, 0.08);
+  --navbar-bg: rgba(245, 245, 250, 0.9);
+}
+
+/* ===== RESET ===== */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body { overflow-x: hidden; scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  min-height: 100vh;
+  line-height: 1.5;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+a { text-decoration: none; color: inherit; }
+
+button { cursor: pointer; font-family: var(--font); }
+
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: var(--bg-primary); }
+::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 3px; }
+
+/* ===== SHARED GRID ===== */
+.movies-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 1.5rem;
+  padding: 0;
+}
+
+@media (max-width: 600px) {
+  .movies-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+}
