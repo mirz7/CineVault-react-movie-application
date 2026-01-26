@@ -41,7 +41,7 @@ function WatchList() {
   }
 
   return (
-    <div className="watchlist-page">
+    <div className="watchlist-page page-fade-in">
       <ToastContainer toasts={toasts} removeToast={removeToast} />
 
       <div className="watchlist-header">

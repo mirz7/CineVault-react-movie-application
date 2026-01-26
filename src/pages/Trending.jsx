@@ -26,7 +26,7 @@ function Trending() {
   }, []);
 
   return (
-    <div className="home" style={{ paddingTop: "2rem" }}>
+    <div className="home page-fade-in" style={{ paddingTop: "2rem" }}>
       <ToastContainer toasts={toasts} removeToast={removeToast} />
       
       <div className="section-header">

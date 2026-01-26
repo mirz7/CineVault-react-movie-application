@@ -41,7 +41,7 @@ function Favorites() {
   }
 
   return (
-    <div className="favorites-page">
+    <div className="favorites-page page-fade-in">
       <ToastContainer toasts={toasts} removeToast={removeToast} />
 
       <div className="favorites-header">

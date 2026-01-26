@@ -5,26 +5,41 @@ const MovieContext = createContext();
 export const useMovieContext = () => useContext(MovieContext);
 
 export const MovieProvider = ({ children }) => {
-  const [favorites, setFavorites] = useState([]);
-  const [watchlist, setWatchlist] = useState([]);
-  const [ratings, setRatings] = useState({});
-  const [notes, setNotes] = useState({});
-  const [theme, setTheme] = useState("dark");
-
-  // Load from localStorage
-  useEffect(() => {
+  const [favorites, setFavorites] = useState(() => {
     const storedFavs = localStorage.getItem("favorites");
-    const storedWatchlist = localStorage.getItem("watchlist");
-    const storedRatings = localStorage.getItem("ratings");
-    const storedNotes = localStorage.getItem("notes");
-    const storedTheme = localStorage.getItem("theme");
+    return storedFavs ? JSON.parse(storedFavs) : [];
+  });
 
-    if (storedFavs) setFavorites(JSON.parse(storedFavs));
-    if (storedWatchlist) setWatchlist(JSON.parse(storedWatchlist));
-    if (storedRatings) setRatings(JSON.parse(storedRatings));
-    if (storedNotes) setNotes(JSON.parse(storedNotes));
-    if (storedTheme) setTheme(storedTheme);
-  }, []);
+  const [watchlist, setWatchlist] = useState(() => {
+    const storedWatchlist = localStorage.getItem("watchlist");
+    return storedWatchlist ? JSON.parse(storedWatchlist) : [];
+  });
+
+  const [ratings, setRatings] = useState(() => {
+    const storedRatings = localStorage.getItem("ratings");
+    return storedRatings ? JSON.parse(storedRatings) : {};
+  });
+
+  const [notes, setNotes] = useState(() => {
+    const storedNotes = localStorage.getItem("notes");
+    if (!storedNotes) return {};
+    
+    const parsedNotes = JSON.parse(storedNotes);
+    // Migrate old string notes to objects
+    const migratedNotes = {};
+    Object.entries(parsedNotes).forEach(([key, value]) => {
+      if (typeof value === 'string') {
+        migratedNotes[key] = { text: value, movie: null };
+      } else {
+        migratedNotes[key] = value;
+      }
+    });
+    return migratedNotes;
+  });
+
+  const [theme, setTheme] = useState(() => {
+    return localStorage.getItem("theme") || "dark";
+  });
 
   // Persist to localStorage
   useEffect(() => {
@@ -89,14 +104,31 @@ export const MovieProvider = ({ children }) => {
   );
 
   // Notes
-  const saveNote = useCallback((movieId, text) => {
-    setNotes((prev) => ({ ...prev, [movieId]: text }));
+  const saveNote = useCallback((movie, text) => {
+    setNotes((prev) => ({ 
+      ...prev, 
+      [movie.id]: { text, movie } 
+    }));
   }, []);
 
   const getNote = useCallback(
-    (movieId) => notes[movieId] || "",
+    // Returns the text or the object, handle both just in case
+    (movieId) => notes[movieId]?.text || "",
     [notes]
   );
+
+  const getFullNote = useCallback(
+    (movieId) => notes[movieId] || null,
+    [notes]
+  );
+
+  const deleteNote = useCallback((movieId) => {
+    setNotes((prev) => {
+      const newNotes = { ...prev };
+      delete newNotes[movieId];
+      return newNotes;
+    });
+  }, []);
 
   // Theme
   const toggleTheme = useCallback(() => {
@@ -119,6 +151,8 @@ export const MovieProvider = ({ children }) => {
     notes,
     saveNote,
     getNote,
+    getFullNote,
+    deleteNote,
     theme,
     toggleTheme,
   };

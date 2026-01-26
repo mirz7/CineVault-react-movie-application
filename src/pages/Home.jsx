@@ -82,7 +82,7 @@ function Home() {
   };
 
   return (
-    <div className="home">
+    <div className="home page-fade-in">
       <ToastContainer toasts={toasts} removeToast={removeToast} />
 
       <HeroSection />

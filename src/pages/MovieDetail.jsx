@@ -18,11 +18,12 @@ function MovieDetail() {
   const [error, setError] = useState(null);
   const [activeTab, setActiveTab] = useState("about");
   const [noteText, setNoteText] = useState("");
+  const [isEditingNote, setIsEditingNote] = useState(false);
 
   const {
     isFavorite, addToFavorites, removeFromFavorites,
     isInWatchlist, addToWatchlist, removeFromWatchlist,
-    getNote, saveNote,
+    getNote, saveNote, deleteNote,
   } = useMovieContext();
   const { toasts, addToast, removeToast } = useToast();
 
@@ -33,7 +34,12 @@ function MovieDetail() {
     window.scrollTo(0, 0);
     setLoading(true);
     const existingNote = getNote(id);
-    if (existingNote) setNoteText(existingNote);
+    if (existingNote) {
+      setNoteText(existingNote);
+      setIsEditingNote(false);
+    } else {
+      setIsEditingNote(true);
+    }
     
     Promise.all([
       getMovieDetails(id),
@@ -74,12 +80,24 @@ function MovieDetail() {
     : "N/A";
 
   const handleSaveNote = () => {
-    saveNote(id, noteText);
+    if (!noteText.trim()) {
+      addToast("Note cannot be empty", "error");
+      return;
+    }
+    saveNote(movie, noteText);
+    setIsEditingNote(false);
     addToast("Notes saved!", "success");
   };
 
+  const handleDeleteNote = () => {
+    deleteNote(id);
+    setNoteText("");
+    setIsEditingNote(true);
+    addToast("Note deleted", "info");
+  };
+
   return (
-    <div className="movie-detail">
+    <div className="movie-detail page-fade-in">
       <ToastContainer toasts={toasts} removeToast={removeToast} />
 
       {/* Backdrop */}
@@ -222,17 +240,42 @@ function MovieDetail() {
                 </div>
               )}
               {activeTab === "notes" && (
-                <div className="notes-section">
-                  <p className="notes-desc">Add your personal review or watch notes:</p>
-                  <textarea
-                    className="notes-input"
-                    placeholder="E.g. The twist ending was crazy! Watched with family..."
-                    value={noteText}
-                    onChange={(e) => setNoteText(e.target.value)}
-                  />
-                  <button className="save-note-btn" onClick={handleSaveNote}>
-                    Save Notes
-                  </button>
+                <div className="notes-section page-fade-in">
+                  {!isEditingNote && noteText ? (
+                    <div className="note-display-card">
+                      <div className="note-header">
+                        <span className="note-label">📝 My Notes</span>
+                        <div className="note-actions">
+                          <button className="note-edit-btn" onClick={() => setIsEditingNote(true)}>Edit</button>
+                          <button className="note-del-btn" onClick={handleDeleteNote}>Delete</button>
+                        </div>
+                      </div>
+                      <p className="note-content">{noteText}</p>
+                    </div>
+                  ) : (
+                    <div className="note-edit-area">
+                      <p className="notes-desc">Add your personal review or watch notes:</p>
+                      <textarea
+                        className="notes-input"
+                        placeholder="E.g. The twist ending was crazy! Watched with family..."
+                        value={noteText}
+                        onChange={(e) => setNoteText(e.target.value)}
+                      />
+                      <div className="note-edit-actions">
+                        <button className="save-note-btn" onClick={handleSaveNote}>
+                          Save Notes
+                        </button>
+                        {getNote(id) && (
+                          <button className="cancel-note-btn" onClick={() => {
+                            setNoteText(getNote(id));
+                            setIsEditingNote(false);
+                          }}>
+                            Cancel
+                          </button>
+                        )}
+                      </div>
+                    </div>
+                  )}
                 </div>
               )}
             </div>

@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import WatchList from "./pages/WatchList";
 import MovieDetail from "./pages/MovieDetail";
 import Trending from "./pages/Trending";
+import MyNotes from "./pages/MyNotes";
 import { Routes, Route } from "react-router-dom";
 import { MovieProvider } from "./contexts/MovieContext";
 import NavBar from "./components/NavBar";
@@ -18,6 +19,7 @@ function App() {
           <Route path="/trending" element={<Trending />} />
           <Route path="/favorites" element={<Favorites />} />
           <Route path="/watchlist" element={<WatchList />} />
+          <Route path="/notes" element={<MyNotes />} />
           <Route path="/movie/:id" element={<MovieDetail />} />
         </Routes>
       </main>

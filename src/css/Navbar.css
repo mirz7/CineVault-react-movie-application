@@ -20,7 +20,22 @@
   gap: 0.5rem;
 }
 
-.brand-icon { font-size: 1.4rem; }
+.brand-svg-logo {
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.brand-logo-link:hover .brand-svg-logo {
+  transform: scale(1.15) rotate(-5deg);
+}
+
+.brand-svg-logo circle {
+  animation: pulse 2s infinite alternate;
+}
+
+@keyframes pulse {
+  0% { transform: scale(0.9); opacity: 0.8; transform-origin: center; }
+  100% { transform: scale(1.1); opacity: 1; transform-origin: center; }
+}
 
 .brand-text {
   font-size: 1.35rem;
