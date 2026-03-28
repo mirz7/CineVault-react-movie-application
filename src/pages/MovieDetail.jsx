@@ -8,6 +8,40 @@ import ToastContainer from "../components/Toast";
 import "../css/MovieDetail.css";
 import "../css/Notes.css";
 
+const HeartIcon = ({ filled }) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="18"
+    height="18"
+    viewBox="0 0 24 24"
+    fill={filled ? "currentColor" : "none"}
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    style={{ transition: "fill 0.2s ease, transform 0.2s ease" }}
+  >
+    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+  </svg>
+);
+
+const BookmarkIcon = ({ filled }) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="18"
+    height="18"
+    viewBox="0 0 24 24"
+    fill={filled ? "currentColor" : "none"}
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    style={{ transition: "fill 0.2s ease, transform 0.2s ease" }}
+  >
+    <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" />
+  </svg>
+);
+
 function MovieDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -164,21 +198,23 @@ function MovieDetail() {
             <div className="detail-actions">
               <button
                 className={`detail-btn ${favorite ? "btn-active-fav" : "btn-outline"}`}
+                style={{ display: "flex", alignItems: "center", gap: "0.5rem", justifyContent: "center" }}
                 onClick={() => {
                   if (favorite) { removeFromFavorites(movie.id); addToast("Removed from favorites", "info"); }
-                  else { addToFavorites(movie); addToast("Added to favorites ❤️", "success"); }
+                  else { addToFavorites(movie); addToast("Added to favorites", "success"); }
                 }}
               >
-                {favorite ? "❤️ Favorited" : "🤍 Add to Favorites"}
+                <HeartIcon filled={favorite} /> {favorite ? "Favorited" : "Add to Favorites"}
               </button>
               <button
                 className={`detail-btn ${inWatchlist ? "btn-active-watch" : "btn-outline"}`}
+                style={{ display: "flex", alignItems: "center", gap: "0.5rem", justifyContent: "center" }}
                 onClick={() => {
                   if (inWatchlist) { removeFromWatchlist(movie.id); addToast("Removed from watchlist", "info"); }
-                  else { addToWatchlist(movie); addToast("Added to watchlist 🎯", "success"); }
+                  else { addToWatchlist(movie); addToast("Added to watchlist", "success"); }
                 }}
               >
-                {inWatchlist ? "✅ In Watchlist" : "🎯 Add to Watchlist"}
+                <BookmarkIcon filled={inWatchlist} /> {inWatchlist ? "In Watchlist" : "Add to Watchlist"}
               </button>
             </div>
 

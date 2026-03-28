@@ -1,9 +1,10 @@
 import { useEffect } from "react";
+import { createPortal } from "react-dom";
 import "../css/Toast.css";
 
 function Toast({ message, type = "success", onClose }) {
   useEffect(() => {
-    const timer = setTimeout(onClose, 3000);
+    const timer = setTimeout(onClose, 2000);
     return () => clearTimeout(timer);
   }, [onClose]);
 
@@ -19,7 +20,9 @@ function Toast({ message, type = "success", onClose }) {
 }
 
 function ToastContainer({ toasts, removeToast }) {
-  return (
+  if (typeof document === "undefined" || toasts.length === 0) return null;
+
+  return createPortal(
     <div className="toast-container">
       {toasts.map((toast) => (
         <Toast
@@ -29,7 +32,8 @@ function ToastContainer({ toasts, removeToast }) {
           onClose={() => removeToast(toast.id)}
         />
       ))}
-    </div>
+    </div>,
+    document.body
   );
 }
 

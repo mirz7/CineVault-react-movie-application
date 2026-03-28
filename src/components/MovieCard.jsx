@@ -24,6 +24,40 @@ function StarRating({ movieId }) {
   );
 }
 
+const HeartIcon = ({ filled }) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="18"
+    height="18"
+    viewBox="0 0 24 24"
+    fill={filled ? "currentColor" : "none"}
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    style={{ transition: "fill 0.2s ease, transform 0.2s ease" }}
+  >
+    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+  </svg>
+);
+
+const BookmarkIcon = ({ filled }) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="18"
+    height="18"
+    viewBox="0 0 24 24"
+    fill={filled ? "currentColor" : "none"}
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    style={{ transition: "fill 0.2s ease, transform 0.2s ease" }}
+  >
+    <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" />
+  </svg>
+);
+
 function MovieCard({ movie, onToast }) {
   const {
     isFavorite,
@@ -90,14 +124,14 @@ function MovieCard({ movie, onToast }) {
               onClick={onFavoriteClick}
               title={favorite ? "Remove from favorites" : "Add to favorites"}
             >
-              {favorite ? "❤️" : "🤍"}
+              <HeartIcon filled={favorite} />
             </button>
             <button
               className={`action-btn watchlist-btn ${inWatchlist ? "active" : ""}`}
               onClick={onWatchlistClick}
               title={inWatchlist ? "Remove from watchlist" : "Add to watchlist"}
             >
-              {inWatchlist ? "✅" : "🎯"}
+              <BookmarkIcon filled={inWatchlist} />
             </button>
           </div>
           <p className="overlay-overview">
