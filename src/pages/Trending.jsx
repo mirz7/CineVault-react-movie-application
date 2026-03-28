@@ -20,7 +20,7 @@ function Trending() {
       })
       .catch((err) => {
         console.error(err);
-        setError("Failed to load trending movies. Please check your API key.");
+        setError("Failed to load movies. API KEY ERROR.");
       })
       .finally(() => setLoading(false));
   }, []);

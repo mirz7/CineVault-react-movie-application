@@ -33,7 +33,7 @@ function Home() {
       setTotalPages(data.totalPages);
       setError(null);
     } catch {
-      setError("Failed to load movies. Please check your TMDB API key in src/services/api.js!");
+      setError("Failed to load movies. API KEY ERROR");
     }
   }, []);
 
