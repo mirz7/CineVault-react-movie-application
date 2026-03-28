@@ -40,7 +40,7 @@ function Trending() {
         <div className="error-message">
           <p>⚠️ {error}</p>
           <p style={{ fontSize: "0.85em", marginTop: "0.5rem" }}>
-            Make sure you have added your TMDB API key in <strong>src/services/api.js</strong>!
+            API KEY ERROR
           </p>
         </div>
       )}
