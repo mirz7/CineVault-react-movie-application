@@ -28,8 +28,7 @@ function MyNotes() {
 
       {notesList.length === 0 ? (
         <div className="empty-state">
-          <h2>No Notes Yet📝</h2>
-          <p>You haven't added any notes to movies yet.</p>
+          <h2>No Notes Yet</h2>
           <p>
             Visit <Link to="/">Home</Link> and click on a movie to share your thoughts!
           </p>

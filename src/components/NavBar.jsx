@@ -3,10 +3,12 @@ import { useMovieContext } from "../contexts/MovieContext";
 import "../css/Navbar.css";
 
 function NavBar() {
-  const { favorites, watchlist, theme, toggleTheme } = useMovieContext();
+  const { favorites, watchlist, theme, toggleTheme, notes } = useMovieContext();
   const location = useLocation();
 
   const isActive = (path) => location.pathname === path;
+  const notesCount = Object.keys(notes || {}).length;
+  const hasNotes = notesCount > 0;
 
   return (
     <nav className="navbar">
@@ -51,12 +53,17 @@ function NavBar() {
             <span className="nav-badge">{watchlist.length}</span>
           )}
         </Link>
-        <Link
-          to="/notes"
-          className={`nav-link ${isActive("/notes") ? "active" : ""}`}
-        >
-          My Notes
-        </Link>
+        
+          <Link
+            to="/notes"
+            className={`nav-link ${isActive("/notes") ? "active" : ""}`}
+          >
+            My Notes
+            {notesCount > 0 && (
+              <span className="nav-badge">{notesCount}</span>
+            )}
+          </Link>
+        
       </div>
 
       <button 

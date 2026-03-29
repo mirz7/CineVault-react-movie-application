@@ -87,7 +87,7 @@
 .note-label {
   font-weight: 700;
   font-size: 1.1rem;
-  color: var(--gold);
+  color: var(--accent);
 }
 
 .note-actions {

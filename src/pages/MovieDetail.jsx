@@ -149,7 +149,7 @@ function MovieDetail() {
       {/* Main Content */}
       <div className="detail-content">
         <button className="back-btn" onClick={() => navigate(-1)}>
-          ← Back
+          Back
         </button>
 
         <div className="detail-main">
@@ -280,7 +280,7 @@ function MovieDetail() {
                   {!isEditingNote && noteText ? (
                     <div className="note-display-card">
                       <div className="note-header">
-                        <span className="note-label">📝 My Notes</span>
+                        <span className="note-label">My Notes</span>
                         <div className="note-actions">
                           <button className="note-edit-btn" onClick={() => setIsEditingNote(true)}>Edit</button>
                           <button className="note-del-btn" onClick={handleDeleteNote}>Delete</button>

@@ -10,10 +10,10 @@ CineVault is a premium React-based web application that allows users to discover
 - **🔥 Trending & Discovery** — See what's currently hot in the movie world with a dedicated trending page and auto-rotating Hero Banner.
 - **🔍 Advanced Search & Filters** — Search for any movie or filter popular films by genre (Action, Sci-Fi, Comedy, and more).
 - **📋 Watchlist & Favorites** — Save movies you love or plan to watch later. Filter and sort your lists by Title, Rating, Date Added, or Year.
-- **📝 Personal Notes** — Add personal reviews and watch notes directly to any movie's detail page.
-- **🌗 Dark & Light Mode** — Seamless glassmorphism UI with full theme toggling support.
-- **🎬 Cinematic Animations** — Beautiful initial splash screen loader and smooth page transitions when navigating routes.
-- **📱 Fully Responsive** — Fluid, mobile-friendly design optimized for any screen size.
+- **📝 Personal Notes** — Add personal reviews to any movie with a beautifully redesigned premium glassmorphic interface, managed seamlessly with a dedicated "My Notes" section featuring numerical notification badges.
+- **🌗 Dark & Light Mode** — Seamless glassmorphism UI with full theme toggling support that intuitively scales to all custom components.
+- **🎬 Cinematic Animations** — Beautiful initial splash screen loader, dynamic toasts, and smooth page transitions when navigating routes.
+- **📱 Fully Responsive** — Fluid, mobile-friendly design featuring elegant horizontally scrolling filter chips, side-by-side components, and snug layouts perfectly tailored for smaller screens.
 
 ## 🚀 Tech Stack
 

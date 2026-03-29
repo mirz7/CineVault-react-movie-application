@@ -132,13 +132,23 @@
 
 @media (max-width: 600px) {
   .favorites-page, .watchlist-page { padding: 1.5rem 1rem 3rem; }
-  .favorites-controls, .watchlist-controls { flex-direction: column; align-items: stretch; gap: 0.75rem; padding: 0.8rem; }
-  .sort-controls { justify-content: space-between; gap: 0.5rem; }
+  .favorites-controls, .watchlist-controls { flex-direction: column; align-items: stretch; gap: 0.75rem; padding: 0.8rem; width: 100%; box-sizing: border-box; }
+  .sort-controls { 
+    justify-content: flex-start; 
+    gap: 0.5rem; 
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding-bottom: 0.25rem;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    width: 100%;
+  }
+  .sort-controls::-webkit-scrollbar { display: none; }
+  .sort-btn { flex-shrink: 0; white-space: nowrap; }
+  .sort-controls span { flex-shrink: 0; white-space: nowrap; }
 }
 
 @media (max-width: 480px) {
   .favorites-header h1, .watchlist-header h1 { font-size: 1.5rem; }
-  .sort-controls { flex-direction: column; align-items: stretch; }
-  .sort-btn { text-align: center; }
   .clear-btn { width: 100%; }
 }
