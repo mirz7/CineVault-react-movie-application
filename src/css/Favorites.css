@@ -132,6 +132,13 @@
 
 @media (max-width: 600px) {
   .favorites-page, .watchlist-page { padding: 1.5rem 1rem 3rem; }
-  .favorites-controls, .watchlist-controls { flex-direction: column; align-items: stretch; }
-  .sort-controls { flex-wrap: wrap; }
+  .favorites-controls, .watchlist-controls { flex-direction: column; align-items: stretch; gap: 0.75rem; padding: 0.8rem; }
+  .sort-controls { justify-content: space-between; gap: 0.5rem; }
+}
+
+@media (max-width: 480px) {
+  .favorites-header h1, .watchlist-header h1 { font-size: 1.5rem; }
+  .sort-controls { flex-direction: column; align-items: stretch; }
+  .sort-btn { text-align: center; }
+  .clear-btn { width: 100%; }
 }

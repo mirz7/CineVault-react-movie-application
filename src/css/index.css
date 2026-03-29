@@ -47,7 +47,7 @@
 /* ===== RESET ===== */
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
-html, body { overflow-x: hidden; scroll-behavior: smooth; }
+html, body { scroll-behavior: smooth; }
 
 body {
   font-family: var(--font);
@@ -83,6 +83,10 @@ button { cursor: pointer; font-family: var(--font); }
 
 @media (max-width: 600px) {
   .movies-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+}
+
+@media (max-width: 400px) {
+  .movies-grid { grid-template-columns: repeat(2, 1fr); gap: 0.6rem; }
 }
 
 /* ===== ANIMATIONS ===== */

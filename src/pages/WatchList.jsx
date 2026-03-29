@@ -49,7 +49,7 @@ function WatchList() {
           <h1>My Watchlist</h1>
           <p className="watchlist-count">{watchlist.length} movie{watchlist.length !== 1 ? "s" : ""}</p>
         </div>
-        <button
+        {/* <button
           className="clear-btn"
           onClick={() => {
             clearWatchlist();
@@ -57,7 +57,7 @@ function WatchList() {
           }}
         >
           🗑 Clear All
-        </button>
+        </button> */}
       </div>
 
       <div className="watchlist-controls">

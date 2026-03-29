@@ -261,7 +261,17 @@
 
 @media (max-width: 768px) {
   .detail-main { grid-template-columns: 1fr; gap: 1.5rem; }
-  .detail-poster { position: static; max-width: 220px; }
-  .detail-title { font-size: 1.6rem; margin-top: 0; }
+  .detail-poster { position: static; max-width: 220px; margin: 0 auto; }
+  .detail-title { font-size: 1.6rem; margin-top: 0; text-align: center; }
   .detail-content { padding: 1rem 1.2rem 3rem; }
+  .detail-tagline { text-align: center; }
+  .detail-badges { justify-content: center; }
+  .detail-actions { justify-content: center; }
+}
+
+@media (max-width: 480px) {
+  .detail-poster { max-width: 180px; }
+  .detail-title { font-size: 1.4rem; }
+  .detail-stats { flex-direction: column; gap: 1rem; text-align: center; }
+  .detail-tabs { overflow-x: auto; white-space: nowrap; padding-bottom: 0.5rem; }
 }

@@ -139,6 +139,9 @@
 
 @media (max-width: 480px) {
   .hero-backdrop { height: 320px; }
-  .hero-title { font-size: 1.3rem; }
+  .hero-content { left: 1rem; bottom: 1.5rem; max-width: 95%; }
+  .hero-title { font-size: 1.4rem; }
   .hero-overview { display: none; }
+  .hero-actions { flex-direction: column; gap: 0.5rem; align-items: flex-start; }
+  .hero-btn { width: auto; font-size: 0.85rem; padding: 0.6rem 1.25rem; }
 }

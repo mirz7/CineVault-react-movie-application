@@ -124,3 +124,10 @@
   white-space: pre-wrap;
   font-size: 1.05rem;
 }
+
+@media (max-width: 600px) {
+  .notes-page { padding: 1.5rem 1rem; }
+  .page-title { font-size: 1.8rem; }
+  .gnc-header { flex-direction: column; gap: 1rem; }
+  .gnc-delete-btn { align-self: flex-end; margin-top: -3.5rem; }
+}
